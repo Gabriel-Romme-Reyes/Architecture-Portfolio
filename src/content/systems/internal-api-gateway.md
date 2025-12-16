@@ -21,7 +21,7 @@ Internal services had grown organically, with each team creating direct database
 
 ## System Overview
 
-![Internal API Gateway diagram](/diagrams/internal-api-gateway.png)
+![Internal API Gateway diagram](../../assets/diagrams/internal-api-gateway.png)
 
 
 The gateway sits between all internal services and their dependencies. It authenticates requests, routes them to the appropriate backend, and exposes a stable GraphQL interface that abstracts internal data models.

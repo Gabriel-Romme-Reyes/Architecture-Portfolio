@@ -1,1 +1,6 @@
-export default new Map();
+
+import __ASTRO_IMAGE_IMPORT_1ShE2b from "../../assets/diagrams/internal-api-gateway.png?astroContentImageFlag=&importer=src%2Fcontent%2Fsystems%2Finternal-api-gateway.md";
+import __ASTRO_IMAGE_IMPORT_OQxKM from "../../assets/diagrams/automation-messaging-layer.png?astroContentImageFlag=&importer=src%2Fcontent%2Fsystems%2Fautomation-messaging-layer.md";
+import __ASTRO_IMAGE_IMPORT_1bz3k4 from "../../assets/diagrams/realtime-conversation-pipeline-diagram.png?astroContentImageFlag=&importer=src%2Fcontent%2Fsystems%2Freal-time-conversation-pipeline.md";
+export default new Map([["../../assets/diagrams/internal-api-gateway.png?astroContentImageFlag=&importer=src%2Fcontent%2Fsystems%2Finternal-api-gateway.md", __ASTRO_IMAGE_IMPORT_1ShE2b], ["../../assets/diagrams/automation-messaging-layer.png?astroContentImageFlag=&importer=src%2Fcontent%2Fsystems%2Fautomation-messaging-layer.md", __ASTRO_IMAGE_IMPORT_OQxKM], ["../../assets/diagrams/realtime-conversation-pipeline-diagram.png?astroContentImageFlag=&importer=src%2Fcontent%2Fsystems%2Freal-time-conversation-pipeline.md", __ASTRO_IMAGE_IMPORT_1bz3k4]]);
+		

@@ -21,7 +21,7 @@ The goal of this system is to centralize ingestion and state derivation while ke
 
 ## System Overview
 
-![Real-Time Conversation Pipeline diagram](/diagrams/realtime-conversation-pipeline-diagram.png)
+![Real-Time Conversation Pipeline diagram](../../assets/diagrams/realtime-conversation-pipeline-diagram.png)
 
 The pipeline ingests raw WebSocket events, normalizes them into a shared event format, and publishes them to a pub/sub topic. A dedicated subscriber consumes these events and materializes multiple in-memory views of conversation state in Redis.
 
