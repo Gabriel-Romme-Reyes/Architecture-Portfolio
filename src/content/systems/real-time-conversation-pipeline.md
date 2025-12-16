@@ -49,11 +49,17 @@ A dedicated Pub/Sub subscriber responsible for materializing conversation state.
 
 ### Redis (Memorystore)
 Stores three distinct logical datasets:
-- **Last 50 messages per conversation** for fast UI rendering
 - **All WebSocket events for high-value fans** for deeper inspection and automation
 - **Priority feed** for latency-sensitive workflows
 
 Redis is used strictly for hot, ephemeral state with bounded memory and TTL-based eviction.
+
+### Firestore
+Stores two distinct logical datasets:
+- **Chat Message History** for llm-based workflows and analysis downstream
+- **Fan Summary** denormalized to minimize read amplification
+
+Firestore is used strictly for durable, document-based state with explicit retention policies (TTL where applicable) and query/index constraints to keep storage and read costs bounded.
 
 ### Auth Automation Infrastructure
 Provides authenticated session material required for WebSocket connections. Auth artifacts are prepared asynchronously and loaded by ingestion workers at startup.
@@ -73,7 +79,6 @@ Reads directly from Redis. It never consumes Pub/Sub or raw WebSocket events.
 
 ## Tradeoffs & Limitations
 
-- Optimized for *current* state, not long-term analysis
 - High-value fan filtering happens before deep storage
 - Missed Pub/Sub events require consumers to reconcile from Redis
 - Single-region design simplifies latency but limits redundancy
