@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { systems } = Astro.props;
+const base = import.meta.env.BASE_URL;
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString("en-US", {
@@ -18,7 +19,7 @@ function formatDate(date: Date): string {
 <ul class="system-list">
   {systems.map((system) => (
     <li class="system-item">
-      <a href={`/systems/${system.slug}`}>
+      <a href={`${base}systems/${system.slug}`}>
         <h2 class="system-title">{system.data.title}</h2>
         <p class="system-summary">{system.data.summary}</p>
         <p class="system-meta">

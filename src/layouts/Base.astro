@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 interface Props {
   title: string;
   description?: string;
@@ -6,6 +8,7 @@ interface Props {
 
 const { title, description = "Architecture portfolio documenting system design decisions and tradeoffs." } = Astro.props;
 const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -14,18 +17,19 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body>
     <div class="container">
       <nav class="nav">
-        <a href="/" aria-current={currentPath === "/" ? "page" : undefined}>Systems</a>
-        <a href="/notes" aria-current={currentPath === "/notes" ? "page" : undefined}>Notes</a>
-        <a href="/about" aria-current={currentPath === "/about" ? "page" : undefined}>About</a>
+        <a href={base} aria-current={currentPath === base || currentPath === `${base}/` ? "page" : undefined}>Systems</a>
+        <a href={`${base}notes`} aria-current={currentPath.startsWith(`${base}notes`) ? "page" : undefined}>Notes</a>
+        <a href={`${base}about`} aria-current={currentPath.startsWith(`${base}about`) ? "page" : undefined}>About</a>
       </nav>
       <main>
         <slot />
