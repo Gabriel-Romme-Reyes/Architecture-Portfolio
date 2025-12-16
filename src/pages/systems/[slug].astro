@@ -1,0 +1,24 @@
+---
+import System from "../../layouts/System.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const systems = await getCollection("systems", ({ data }) => !data.draft);
+  return systems.map((system) => ({
+    params: { slug: system.slug },
+    props: { system },
+  }));
+}
+
+interface Props {
+  system: CollectionEntry<"systems">;
+}
+
+const { system } = Astro.props;
+const { Content } = await system.render();
+---
+
+<System system={system}>
+  <Content />
+</System>

@@ -1,0 +1,58 @@
+---
+import Base from "./Base.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  system: CollectionEntry<"systems">;
+}
+
+const { system } = Astro.props;
+const { title, summary, date, domain, status } = system.data;
+
+const formattedDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+});
+---
+
+<Base title={`${title} — Systems`} description={summary}>
+  <article class="system-page">
+    <header class="page-header">
+      <h1>{title}</h1>
+      <p class="page-meta">
+        <span class="domain">{domain}</span>
+        <span class="separator">·</span>
+        <time datetime={date.toISOString()}>{formattedDate}</time>
+        {status !== "shipped" && (
+          <>
+            <span class="separator">·</span>
+            <span class="status">{status}</span>
+          </>
+        )}
+      </p>
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .system-page {
+    max-width: var(--measure-wide);
+  }
+
+  .separator {
+    margin: 0 var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .domain {
+    text-transform: capitalize;
+  }
+
+  .status {
+    text-transform: capitalize;
+    color: var(--color-text-muted);
+  }
+</style>

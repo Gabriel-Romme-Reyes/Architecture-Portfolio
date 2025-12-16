@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  systems: CollectionEntry<"systems">[];
+}
+
+const { systems } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+  });
+}
+---
+
+<ul class="system-list">
+  {systems.map((system) => (
+    <li class="system-item">
+      <a href={`/systems/${system.slug}`}>
+        <h2 class="system-title">{system.data.title}</h2>
+        <p class="system-summary">{system.data.summary}</p>
+        <p class="system-meta">
+          <span class="domain">{system.data.domain}</span>
+          <span class="separator">·</span>
+          <time datetime={system.data.date.toISOString()}>
+            {formatDate(system.data.date)}
+          </time>
+        </p>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .domain {
+    text-transform: capitalize;
+  }
+
+  .separator {
+    margin: 0 var(--space-2);
+    color: var(--color-text-muted);
+  }
+</style>

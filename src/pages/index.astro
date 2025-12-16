@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import SystemList from "../components/SystemList.astro";
+import { getCollection } from "astro:content";
+
+const systems = await getCollection("systems", ({ data }) => !data.draft);
+const sortedSystems = systems.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base title="Systems">
+  <section class="intro">
+    <p class="lead">
+      Architecture notes from systems I've designed. Each entry documents
+      the context, decisions, tradeoffs, and outcomes—focused on the why
+      rather than the what.
+    </p>
+  </section>
+
+  <section>
+    <SystemList systems={sortedSystems} />
+  </section>
+</Base>
+
+<style>
+  .intro {
+    margin-bottom: var(--space-8);
+  }
+</style>
