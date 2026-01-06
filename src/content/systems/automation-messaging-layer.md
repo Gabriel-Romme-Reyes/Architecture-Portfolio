@@ -24,7 +24,7 @@ These constraints required a data-first, event-driven platform rather than a mon
 
 ## System Overview
 
-![Automation Messaging Layer diagram](../../assets/diagrams/automation-messaging-layer.png)
+
 
 The platform is structured as an asynchronous, multi-stage event pipeline:
 
